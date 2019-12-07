@@ -9,4 +9,5 @@ class test extends Controller{
     public function actionInfo(){
         phpinfo();
     }
+
 }
