@@ -8,9 +8,9 @@ return [
     'ignore' => '/Flowcore',
 
     'pages' => [
-        'test' => 'Data/Config/Test_config.php',
-        'some' => 'Data/Config/some_config.php'
+        'template' => 'Data/Config/template_config.php',
+        'example' => 'Data/Config/example_config.php'
     ],
 
-    'default' => 'test'
+    'default' => 'template'
 ];
