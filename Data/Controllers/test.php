@@ -6,7 +6,7 @@ class test extends Controller{
         var_dump($this);
     }
 
-    public function actionhow(){
-        var_dump('zzzzz');
+    public function actioninfo(){
+        phpinfo();
     }
 }
