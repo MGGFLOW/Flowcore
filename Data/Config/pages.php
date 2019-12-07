@@ -1,8 +1,6 @@
 <?php
 
 return [
-//    'base_controller' => 'Flow/Controller/Controller.php',
-
     'controllers_dir' => 'Data/Controllers',
 
     'autoload' => 'Flow/App/autoload.php',
