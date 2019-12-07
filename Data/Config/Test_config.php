@@ -6,12 +6,10 @@ return [
     ],
 
     'classes' => [
-        'vk_api' => [
-            'test_prop' => 'sexy'
-        ]
+
     ],
 
     'include' => [
-        'test.php'
+
     ]
 ];
