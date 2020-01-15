@@ -1,4 +1,5 @@
 <?php
+namespace Mggflow;
 
 class Flow{
 
@@ -90,22 +91,21 @@ class Flow{
     public function run($pages_file){
         $pages = $this->getPages($pages_file);
         if(!$this->validPages($pages)) return false;
-        //var_dump('pages');
+
         $uri = $this->parseUri($pages['ignore']);
         $this->provideController($pages,$uri->controller);
         if(!$this->includeController($pages['controllers_dir'],$uri->controller)) return false;
-        //var_dump('controller');
+
         if(!$this->includeAutoload($pages['autoload'])) return false;
-        //var_dump('autoload');
+
         $config_file = $this->getControllerConfigFile($pages,$uri->controller);
         if($config_file==false) return false;
-        //var_dump('config');
+
         $controller = new $uri->controller();
 
         if(method_exists($controller,'run'))
             return $controller->run($config_file,$uri->action,$uri->instructions);
 
-        //var_dump('method');
         return false;
     }
 }

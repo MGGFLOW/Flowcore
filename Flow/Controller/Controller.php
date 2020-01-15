@@ -1,4 +1,5 @@
 <?php
+namespace Mggflow;
 
 class Controller{
     protected $config;
@@ -100,5 +101,53 @@ class Controller{
 
 
         return $this->$method_name();
+    }
+
+    protected function createTemplatePath($file){
+        $dir = '';
+        if(property_exists($this,'templates_dir')){
+            $dir = $this->templates_dir;
+        }
+
+        return ltrim($dir.'/'.$file,'/');
+    }
+
+    protected function checkNameExtension($name){
+        $ext = pathinfo($name,PATHINFO_EXTENSION );
+        return $ext==='php';
+    }
+
+    protected function provideTemplateExtension($name){
+        if($this->checkNameExtension($name)){
+            return $name;
+        }else{
+            return $name.'.php';
+        }
+    }
+
+    protected  function provideTemplate($name){
+        $path = $this->provideTemplateExtension($name);
+        //var_dump($path);
+        if(!file_exists($path)){
+            $path = $this->createTemplatePath($path);
+            //var_dump($path);
+            if(!file_exists($path)){
+                return false;
+            }
+        }
+
+        return $path;
+    }
+
+    public function view($template,$data){
+        $path = $this->provideTemplate($template);
+        //var_dump($path);
+        if($path===false) return false;
+
+        $view = new View();
+        $view->setData($data);
+        $view->setTemplatePath($path);
+
+        return $view->start();
     }
 }

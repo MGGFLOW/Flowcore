@@ -1,12 +1,15 @@
 <?php
 
-class example extends Controller{
+class example extends Mggflow\Controller{
     public function index(){
         $this->actionHello();
     }
 
     public function actionHello(){
-        echo 'Hello World';
+        $data = new Mggflow\ViewingData();
+        $data->message = 'Hello World!';
+
+        $this->view('example',$data);
     }
 
     public function actionInfo(){

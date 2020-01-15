@@ -12,5 +12,5 @@ return [
         'example' => 'Data/Config/example_config.php'
     ],
 
-    'default' => 'template'
+    'default' => 'example'
 ];
